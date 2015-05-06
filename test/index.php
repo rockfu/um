@@ -9,6 +9,79 @@
  <script src="jquery.steps.js"></script> 
   <script src="jquery.validate.js"></script>
   <script>
+  // This is called with the results from from FB.getLoginStatus().
+  $.validator.addMethod('minStrict', function (value, el, param) {
+    return value > param;
+});
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '224353570014',//plase replace your app id
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.2' // use version 2.2
+  });
+
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('fblogin').value="1";
+      document.getElementById("fbbutton").style.display = "none";
+      document.getElementById('status').innerHTML =
+        'Hi , ' + response.name + '!';
+    });
+  }
+</script>
+  <script>
   $(function ()
         {
 
@@ -16,11 +89,13 @@ var form = $("#myForm").show();
  var validator =form.validate({
     rules: {
         uploadedfile: "required",
-     
+     	fblogin:{required:true,
+     	min:1,
+     	}
     },
     messages: {
         uploadedfile: "請附上照片",
-       
+       fblogin:"請登入先Facebook"
     }
 });
 form.steps({
@@ -61,7 +136,7 @@ form.steps({
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.3&appId=136861589844296";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-<title>無標題文件</title>
+<title>we love guam 結婚篇</title>
 
 </head>
 
@@ -71,6 +146,10 @@ form.steps({
 <img src="image/banner.jpg" />
 </div>
 <form method="POST" action="submit.php" id="myForm" enctype="multipart/form-data">
+<input type="hidden" value="0" id="fblogin" name="fblogin" class="required">
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" id="fbbutton">
+</fb:login-button>
+<div id="status"></div>
 <h3>讚好支持我們</h3>
  <fieldset>
  <h2>請Like 下面的專頁</h2>
