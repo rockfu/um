@@ -46,7 +46,7 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '224353570014',//plase replace your app id
+    appId      : '224353570014',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -167,9 +167,10 @@ form.steps({
 <body>
 <div id="formbody">
 <div id="banner">
-<img src="image/banner.jpg" />
+<img src="rockf" />
 </div>
 <form method="POST" action="submit.php" id="myForm" enctype="multipart/form-data">
+
 <h3>讚好支持我們</h3>
  <fieldset>
  <input type="hidden" value="0" id="fblogin" name="fblogin" class="required">
