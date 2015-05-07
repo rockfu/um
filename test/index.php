@@ -109,9 +109,33 @@ form.steps({
         {
             return true;
         }
-        form.validate().settings.ignore = ":disabled,:hidden";
+         if (newIndex === 1 && Number($("#fblogin").val()) < 1)
+        {
+        document.getElementById('status').innerHTML ="請登入facebook";
+            return false;
+        }
+        if (currentIndex < newIndex)
+        {
+            // To remove error styles
+            form.find(".body:eq(" + newIndex + ") label.error").remove();
+            form.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+        }
+       form.validate().settings.ignore = ":disabled,:hidden";
         return form.valid();
         
+    },
+     onStepChanged: function (event, currentIndex, priorIndex)
+    {
+        // Used to skip the "Warning" step if the user is old enough.
+        if (currentIndex === 2 && Number($("#fblogin").val()) >= 1)
+        {
+            form.steps("next");
+        }
+        // Used to skip the "Warning" step if the user is old enough and wants to the previous step.
+        if (currentIndex === 2 && priorIndex === 3)
+        {
+            form.steps("previous");
+        }
     },
 	onFinishing: function (event, currentIndex)
     {
@@ -146,12 +170,12 @@ form.steps({
 <img src="image/banner.jpg" />
 </div>
 <form method="POST" action="submit.php" id="myForm" enctype="multipart/form-data">
-<input type="hidden" value="0" id="fblogin" name="fblogin" class="required">
+<h3>讚好支持我們</h3>
+ <fieldset>
+ <input type="hidden" value="0" id="fblogin" name="fblogin" class="required">
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" id="fbbutton">
 </fb:login-button>
 <div id="status"></div>
-<h3>讚好支持我們</h3>
- <fieldset>
  <h2>請Like 下面的專頁</h2>
  <div class="fb-page" data-href="https://www.facebook.com/umagazinehk" data-hide-cover="true" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/umagazinehk"><a href="https://www.facebook.com/umagazinehk" class="required">U Magazine</a></blockquote></div></div><br/>
   <div class="fb-page" data-href="https://www.facebook.com/visitguam.hk" data-hide-cover="true" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/visitguam.hk"><a href="https://www.facebook.com/visitguam.hk">Guam Visitors Bureau (HK) /  關島觀光局 (香港)</a></blockquote></div></div><br/>
