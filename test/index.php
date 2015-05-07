@@ -167,7 +167,7 @@ form.steps({
 <body>
 <div id="formbody">
 <div id="banner">
-<img src="rockf" />
+<img src="image/banner.jpg" />
 </div>
 <form method="POST" action="submit.php" id="myForm" enctype="multipart/form-data">
 
