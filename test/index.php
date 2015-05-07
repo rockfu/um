@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="css/normalize.css">
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/jquery.steps.css">
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+ <script src="jquery.js"></script> 
  <script src="jquery.steps.js"></script> 
   <script src="jquery.validate.js"></script>
   <script>
