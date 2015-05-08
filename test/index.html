@@ -37,31 +37,17 @@
 	</script>		
 <div id="fb-root"></div>
 <script>
-  window.fbAsyncInit = function () {
-      FB.init({
-          appId: '224353570014', // App ID
-          channelUrl: 'https://contest.umagazinehk.com/index.html', // Channel file can be .php @ anything
-      });
- 
-      FB.Canvas.setSize({
-          height: 1400
-      });
-      setTimeout("FB.Canvas.setAutoGrow()", 500);
- 
-  };
- 
-  // Load the SDK Asynchronously
-  (function (d) {
-      var js, id = 'facebook-jssdk';
-      if (d.getElementById(id)) {
-          return;
-      }
-      js = d.createElement('script');
-      js.id = id;
-      js.async = true;
-      js.src = "//connect.facebook.net/en_US/all.js";
-      d.getElementsByTagName('head')[0].appendChild(js);
-  }(document));
+
+window.fbAsyncInit = function() {
+FB.init({
+appId : '224353570014', // App ID
+
+});
+}
+
+window.onload = function() {
+FB.Canvas.setAutoGrow(500); //Run the timer every 100 milliseconds, you can increase this if you want to save CPU cycles
+}
 </script>	
 </head>
 
