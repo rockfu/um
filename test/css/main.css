@@ -21,6 +21,7 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
+	margin: 0;
 }
 
 /*
@@ -211,7 +212,7 @@ textarea {
 }
 #mainbody{
 	margin:0 auto;
-	width:810px;
+	width:790px;
 	background-image:url(../image/web.jpg);
 	background-repeat:no-repeat;
 	height:1401px;
@@ -219,7 +220,7 @@ textarea {
 	}
 #formbody{
 	margin:0 auto;
-	width:810px;
+	width:790px;
 
 	background-repeat:no-repeat;
 	height:1401px;
@@ -227,7 +228,7 @@ textarea {
 	}
 #formbody1{
 	margin:0 auto;
-	width:810px;
+	width:790px;
 	background-repeat:no-repeat;
 }
 #banner{
@@ -242,7 +243,7 @@ textarea {
 		width:154px;
 		height:46px;
  		z-index: 1;
-		margin-left: 55px;
+		margin-left: 25px;
  		 margin-right: 55px;
 		}
 #bt1{
