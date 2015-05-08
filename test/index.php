@@ -165,7 +165,7 @@ form.steps({
 </head>
 
 <body>
-<div id="formbody">
+<div id="formbody1">
 <div id="banner">
 <img src="image/banner.jpg" />
 </div>
